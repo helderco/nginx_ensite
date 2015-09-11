@@ -59,9 +59,7 @@ install:
 	for dir in $(INSTALL_DIRS); do mkdir -p $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in $(INSTALL_FILES); do cp $$file $(DESTDIR)$(PREFIX)/$$file; done
 	mkdir -p $(DESTDIR)$(DOC_DIR)
-	cd $(DESTDIR)$(PREFIX)/bin
-	ln -s nginx_ensite nginx_dissite
-	cd $(CURR_DIR)
+	(cd $(DESTDIR)$(PREFIX)/bin && ln -sf nginx_ensite nginx_dissite)
 	cp -r doc/man/$(DOC_FILES) $(DESTDIR)$(DOC_DIR)/
 	mkdir -p $(COMPLETION_DIR)
 	cp bash_completion.d/* $(COMPLETION_DIR)/
